@@ -28369,139 +28369,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._v("\n  please "),
-      _c("router-link", { attrs: { to: "/login" } }, [_vm._v("Login.")]),
+  return _c("div", { staticClass: "wrapper" }, [
+    _c("section", [
+      _c("p", { staticClass: "text-center" }, [_vm._v("Tag Keep")]),
       _vm._v(" "),
       _c(
-        "div",
+        "p",
+        { staticClass: "text-right" },
         [
-          _c("p", [_vm._v("Your tags here.")]),
+          _vm._v("please "),
+          _c("router-link", { attrs: { to: "/login" } }, [_vm._v("Login.")])
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "section",
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _vm.showAlert
+            ? _c(
+                "div",
+                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+                [_vm._v("\n        " + _vm._s(_vm.alertMessage) + "\n      ")]
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _vm.showAlert
-              ? _c(
-                  "div",
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "alert alert-danger",
-                    attrs: { role: "alert" }
-                  },
-                  [_vm._v("\n        " + _vm._s(_vm.alertMessage) + "\n      ")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "new tag..." },
-              domProps: { value: _vm.name },
-              on: {
-                keyup: function($event) {
-                  if (
-                    !("button" in $event) &&
-                    _vm._k($event.keyCode, "enter", 13, $event.key)
-                  ) {
-                    return null
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.title,
+                    expression: "title"
                   }
-                  _vm.addTag($event)
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                staticClass: "tk-title",
+                attrs: { type: "text", placeholder: "タイトル" },
+                domProps: { value: _vm.title },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key)
+                    ) {
+                      return null
+                    }
+                    _vm.addTag($event)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.title = $event.target.value
                   }
-                  _vm.name = $event.target.value
                 }
-              }
-            }),
+              })
+            ]),
             _vm._v(" "),
-            _vm.name === ""
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary add-tag-btn",
-                    attrs: { disabled: "disabled" }
-                  },
-                  [_vm._v("\n        Add tag\n      ")]
-                )
-              : _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary add-tag-btn",
-                    on: { click: _vm.addTag }
-                  },
-                  [_vm._v("\n        Add tag\n      ")]
-                )
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.tags, function(tag) {
-            return _c("ul", [
-              tag.is_done
-                ? _c(
-                    "li",
-                    [_c("strike", [_vm._v(" " + _vm._s(tag.name) + " ")])],
-                    1
-                  )
-                : _c("li", [
-                    _vm._v("\n        " + _vm._s(tag.name) + "\n      ")
-                  ]),
-              _vm._v(" "),
-              tag.is_done
-                ? _c(
-                    "button",
+            _c("div", { staticClass: "panel-body" }, [
+              _c("div", [
+                _c("input", {
+                  directives: [
                     {
-                      staticClass: "btn btn-sm btn-success",
-                      on: {
-                        click: function($event) {
-                          _vm.completeTag(tag)
-                        }
-                      }
-                    },
-                    [_vm._v("Undo")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-success",
-                      on: {
-                        click: function($event) {
-                          _vm.completeTag(tag)
-                        }
-                      }
-                    },
-                    [_vm._v("Done")]
-                  ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-danger",
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.content,
+                      expression: "content"
+                    }
+                  ],
+                  staticClass: "tk-content",
+                  attrs: { type: "text", placeholder: "メモを入力..." },
+                  domProps: { value: _vm.content },
                   on: {
-                    click: function($event) {
-                      _vm.removeTag(tag)
+                    keyup: function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key)
+                      ) {
+                        return null
+                      }
+                      _vm.addTag($event)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.content = $event.target.value
                     }
                   }
-                },
-                [_vm._v("Remove")]
-              )
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
             ])
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.tags, function(tag) {
+          return _c("div", [
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("div", { staticClass: "panel panel-default" }, [
+                _c("div", { staticClass: "panel-heading" }, [
+                  _vm._v("\n            " + _vm._s(tag.title) + "}\n          ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("div", [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(tag.content) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "tk-remove" }, [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.removeTag(tag)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-archive",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tk-submit" }, [_c("a", [_vm._v("完了")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -28899,6 +28919,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -28909,7 +28939,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tags: [],
-      name: '',
+      content: '',
       showAlert: false,
       alertMessage: ''
     };
@@ -28927,14 +28957,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addTag: function addTag() {
       var _this2 = this;
 
-      if (this.name === '') {
+      if (this.content === '') {
         this.showAlert = true;
-        this.alertMessage = 'Tag name should not be blank.';
+        this.alertMessage = 'Tag content should not be blank.';
         return false;
       }
-      __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags', { name: this.name }, function (res) {
+      __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags', { content: this.content }, function (res) {
         _this2.tags[res.data.id] = res.data;
-        _this2.name = '';
+        _this2.content = '';
         _this2.showAlert = false;
         _this2.alertMessage = '';
       });

@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -8,6 +7,20 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-.add-tag-btn {
-  margin-top: 10px;
+// Font Awesome
+@import "node_modules/font-awesome-scss/scss/font-awesome.scss";
+
+a {
+  cursor: pointer;
+}
+.tk-title, .tk-content {
+  border: none;
+  outline: 0;
+  width: 100%;
+}
+.tk-submit {
+  text-align: right;
+}
+.tk-remove {
+  text-align: right;
 }

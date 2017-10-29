@@ -1,38 +1,48 @@
 <template>
-  <div>
-    please <router-link to="/login">Login.</router-link>
-
-    <div>
-      <p>Your tags here.</p>
-
+  <div class="wrapper">
+    <section>
+      <p class="text-center">Tag Keep</p>
+      <p class="text-right">please <router-link to="/login">Login.</router-link></p>
+    </section>
+    <section>
       <div class="form-group">
         <div class="alert alert-danger" role="alert" v-if="showAlert">
           {{ alertMessage }}
         </div>
-        <input type="text" class="form-control"
-            v-model="name" @keyup.enter="addTag" placeholder="new tag...">
-        <button class="btn btn-primary add-tag-btn" disabled="disabled" v-if="name === ''">
-          Add tag
-        </button>
-        <button class="btn btn-primary add-tag-btn" @click='addTag' v-else>
-          Add tag
-        </button>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <input type="text" class="tk-title" v-model="title" @keyup.enter="addTag" placeholder="タイトル">
+          </div>
+          <div class="panel-body">
+            <div>
+              <input type="text" class="tk-content" v-model="content" @keyup.enter="addTag" placeholder="メモを入力...">
+            </div>
+            <div class="tk-submit">
+              <a>完了</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <ul v-for="tag in tags">
-        <li v-if="tag.is_done">
-          <strike> {{ tag.name }} </strike>
-        </li>
-        <li v-else>
-          {{ tag.name }}
-        </li>
-        <button @click="completeTag(tag)" class="btn btn-sm btn-success" v-if="tag.is_done">Undo</button>
-        <button @click="completeTag(tag)" class="btn btn-sm btn-success" v-else>Done</button>
-
-        <button @click="removeTag(tag)" class="btn btn-sm btn-danger">Remove</button>
-      </ul>
-
-    </div>
+      <div v-for="tag in tags">
+        <div class="col-md-4">
+          <div　class="panel panel-default">
+            <div class="panel-heading">
+              {{ tag.title }}}
+            </div>
+            <div class="panel-body">
+              <div>
+                {{ tag.content }}
+              </div>
+              <div class="tk-remove">
+                <a @click="removeTag(tag)"><i class="fa fa-archive" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
@@ -45,7 +55,7 @@
     data() {
       return {
         tags: [],
-        name: '',
+        content: '',
         showAlert: false,
         alertMessage: '',
       }
@@ -58,14 +68,14 @@
         })
       },
       addTag () {
-        if (this.name === '') {
+        if (this.content === '') {
           this.showAlert = true
-          this.alertMessage = 'Tag name should not be blank.'
+          this.alertMessage = 'Tag content should not be blank.'
           return false
         }
-        http.post('tags', {name: this.name}, res => {
+        http.post('tags', {content: this.content}, res => {
           this.tags[res.data.id] = res.data
-          this.name = ''
+          this.content = ''
           this.showAlert = false
           this.alertMessage = ''
         })
