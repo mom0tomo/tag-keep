@@ -4,7 +4,8 @@
 
 $factory->define(App\Tag::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'title' => $faker->sentence,
+        'content' => $faker->paragraph,
         'is_done' => mt_rand(0, 1),
     ];
 });

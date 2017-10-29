@@ -13,7 +13,7 @@ class TagController extends Controller
     }
     public function store(Request $request)
     {
-        return Tag::create($request->only('name'))->save()->fresh();
+        return Tag::create($request->only('content'))->save()->fresh();
     }
 
     public function destroy($id)
