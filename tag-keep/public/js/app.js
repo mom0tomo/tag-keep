@@ -28370,46 +28370,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
-    _c("section", [
+    _c("section", { staticClass: "container-top" }, [
       _c("p", { staticClass: "text-center" }, [_vm._v("Tag Keep")]),
       _vm._v(" "),
-      _c(
-        "p",
-        { staticClass: "text-right" },
-        [
-          _vm._v("please "),
-          _c("router-link", { attrs: { to: "/login" } }, [_vm._v("Login.")])
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "section",
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _vm.showAlert
-            ? _c(
-                "div",
-                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-                [_vm._v("\n        " + _vm._s(_vm.alertMessage) + "\n      ")]
-              )
-            : _vm._e(),
+      _c("div", { staticClass: "form-group" }, [
+        _vm.showAlert
+          ? _c(
+              "div",
+              { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+              [_vm._v("\n        " + _vm._s(_vm.alertMessage) + "\n      ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.title,
+                  expression: "title"
+                }
+              ],
+              staticClass: "tk-title",
+              attrs: { type: "text", placeholder: "Title" },
+              domProps: { value: _vm.title },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key)
+                  ) {
+                    return null
+                  }
+                  _vm.addTag($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.title = $event.target.value
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", [
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.title,
-                    expression: "title"
+                    value: _vm.content,
+                    expression: "content"
                   }
                 ],
-                staticClass: "tk-title",
-                attrs: { type: "text", placeholder: "タイトル" },
-                domProps: { value: _vm.title },
+                staticClass: "tk-content",
+                attrs: { type: "text", placeholder: "Take a note..." },
+                domProps: { value: _vm.content },
                 on: {
                   keyup: function($event) {
                     if (
@@ -28424,93 +28444,92 @@ var render = function() {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.title = $event.target.value
+                    _vm.content = $event.target.value
                   }
                 }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.content,
-                      expression: "content"
-                    }
-                  ],
-                  staticClass: "tk-content",
-                  attrs: { type: "text", placeholder: "メモを入力..." },
-                  domProps: { value: _vm.content },
+            _c("div", { staticClass: "tk-icons col-xs-8" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
                   on: {
-                    keyup: function($event) {
-                      if (
-                        !("button" in $event) &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key)
-                      ) {
-                        return null
-                      }
-                      _vm.addTag($event)
-                    },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.content = $event.target.value
+                    click: function($event) {
+                      _vm.removeTag(_vm.tag)
                     }
                   }
-                })
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-archive",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6)
+            ]),
+            _vm._v(" "),
+            _vm._m(7)
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "section",
+      { staticClass: "container-bottom" },
+      _vm._l(_vm.tags, function(tag) {
+        return _c("div", [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c("div", { staticClass: "panel-heading" }, [
+                _vm._v("\n            " + _vm._s(tag.title) + "}\n          ")
               ]),
               _vm._v(" "),
-              _vm._m(0)
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.tags, function(tag) {
-          return _c("div", [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c("div", { staticClass: "panel panel-default" }, [
-                _c("div", { staticClass: "panel-heading" }, [
-                  _vm._v("\n            " + _vm._s(tag.title) + "}\n          ")
+              _c("div", { staticClass: "panel-body" }, [
+                _c("div", [
+                  _vm._v(
+                    "\n              " + _vm._s(tag.content) + "\n            "
+                  )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "panel-body" }, [
-                  _c("div", [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(tag.content) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tk-remove" }, [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            _vm.removeTag(tag)
-                          }
+                _c("div", { staticClass: "tk-remove" }, [
+                  _c(
+                    "a",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.removeTag(tag)
                         }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-archive",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ]
-                    )
-                  ])
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-archive",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  )
                 ])
               ])
             ])
           ])
-        })
-      ],
-      2
+        ])
+      })
     )
   ])
 }
@@ -28519,7 +28538,80 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tk-submit" }, [_c("a", [_vm._v("完了")])])
+    return _c("a", [
+      _c("i", {
+        staticClass: "fa fa-hand-o-up",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", {
+        staticClass: "fa fa-user-plus",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", {
+        staticClass: "fa fa-paint-brush",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", {
+        staticClass: "fa fa-picture-o",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", {
+        staticClass: "fa fa-ellipsis-v",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", { staticClass: "fa fa-undo", attrs: { "aria-hidden": "true" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("i", { staticClass: "fa fa-repeat", attrs: { "aria-hidden": "true" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tk-submit col-xs-4" }, [
+      _c("a", [_vm._v("DONE")])
+    ])
   }
 ]
 render._withStripped = true
@@ -28882,6 +28974,15 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vue_
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_http__ = __webpack_require__(59);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

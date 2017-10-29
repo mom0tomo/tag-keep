@@ -12,15 +12,40 @@
 
 a {
   cursor: pointer;
+  color: #999;
+}
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+.container-top {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 0 15px;
 }
 .tk-title, .tk-content {
   border: none;
   outline: 0;
   width: 100%;
 }
+.tk-icons {
+  margin-top: 15px;
+}
+.tk-icons a {
+  font-size: 16px;
+  margin: 15px 25px 0 0;
+}
 .tk-submit {
+  margin-top: 15px;
   text-align: right;
 }
+.tk-submit a:hover {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
 .tk-remove {
+  font-size: 16px;
+  margin-top: 15px;
   text-align: right;
 }
