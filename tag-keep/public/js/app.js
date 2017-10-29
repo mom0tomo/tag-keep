@@ -15737,16 +15737,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.alertMessage = '入力必須です。';
         return false;
       }
-      __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags', {
+      __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags',
+      // {
+      //   title: this.title}, res => {
+      //   this.tags[res.data.id] = res.data
+      //   this.title = ''
+      //   this.showAlert = false
+      //   this.alertMessage = ''
+      // },
+      {
         content: this.content }, function (res) {
         _this2.tags[res.data.id] = res.data;
         _this2.content = '';
-        _this2.showAlert = false;
-        _this2.alertMessage = '';
-      }, {
-        title: this.title }, function (res) {
-        _this2.tags[res.data.id] = res.data;
-        _this2.title = '';
         _this2.showAlert = false;
         _this2.alertMessage = '';
       });

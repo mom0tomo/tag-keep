@@ -84,21 +84,21 @@
           return false
         }
         http.post('tags',
+        // {
+        //   title: this.title}, res => {
+        //   this.tags[res.data.id] = res.data
+        //   this.title = ''
+        //   this.showAlert = false
+        //   this.alertMessage = ''
+        // },
         {
           content: this.content}, res => {
             this.tags[res.data.id] = res.data
             this.content = ''
             this.showAlert = false
             this.alertMessage = ''
-        },
-        {
-          title: this.title}, res => {
-          this.tags[res.data.id] = res.data
-          this.title = ''
-          this.showAlert = false
-          this.alertMessage = ''
         })
-        },
+      },
       removeTag (tag) {
         http.delete('tags/' + tag.id, {}, () => {
           delete this.tags[tag.id]
