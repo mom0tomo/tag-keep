@@ -41,3 +41,38 @@
     </div>
   </div>
 </template>
+
+<script>
+  import userStore from '../stores/userStore'
+  import http from '../services/http'
+  export default {
+    mounted () {
+      this.fetchUsers()
+    },
+    data() {
+      return {
+        email: 'test@example.com',
+        password: 'secret',
+        users: [],
+        showAlert: false,
+        alertMessage: '',
+      }
+    },
+    methods: {
+      login () {
+        userStore.login(this.email, this.password, res => {
+          this.$router.push('/')
+        }, error => {
+          this.showAlert = true
+          this.alertMessage = 'Wrong email or password.'
+        })
+      },
+      fetchUsers () {
+        http.get('users', res => {
+          this.users = res.data.users
+          this.email = this.users[0].email
+        })
+      }
+    }
+  }
+</script>

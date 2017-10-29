@@ -11,7 +11,7 @@ const app = new Vue({
   router,
   created () {
     http.init()
-    userStore.init()
+    // userStore.init()
     event.init(new Vue)
   },
   render: h => h(require('./App.vue')),

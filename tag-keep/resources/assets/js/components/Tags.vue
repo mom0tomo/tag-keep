@@ -25,7 +25,7 @@
               <a><i class="fa fa-repeat" aria-hidden="true"></i></a>
             </div>
             <div class="tk-submit col-xs-4">
-              <a>DONE</a>
+              <a @click='addTag'>DONE</a>
             </div>
           </div>
         </div>
@@ -54,6 +54,8 @@
 </template>
 <script>
   import http from '../services/http'
+  import userStore from '../stores/userStore'
+  import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
   export default {
     mounted() {
@@ -61,6 +63,7 @@
     },
     data() {
       return {
+        userState: userStore.state,
         tags: [],
         title: '',
         content: '',
@@ -70,7 +73,6 @@
     },
     methods: {
       fetchTags () {
-        // TODO: not to send request when the user is not authenticated
         http.get('tags', res => {
           this.tags = res.data
         })
@@ -78,28 +80,25 @@
       addTag () {
         if (this.content === '') {
           this.showAlert = true
-          this.alertMessage = 'Tag content should not be blank.'
+          this.alertMessage = '入力必須です。'
           return false
         }
-        http.post('tags', {content: this.content}, res => {
-          this.tags[res.data.id] = res.data
-          this.content = ''
-          this.showAlert = false
-          this.alertMessage = ''
-        })
-        http.post('tags', {title: this.title}, res => {
+        http.post('tags',
+        {
+          content: this.content}, res => {
+            this.tags[res.data.id] = res.data
+            this.content = ''
+            this.showAlert = false
+            this.alertMessage = ''
+        },
+        {
+          title: this.title}, res => {
           this.tags[res.data.id] = res.data
           this.title = ''
           this.showAlert = false
           this.alertMessage = ''
         })
-      },
-      completeTag (tag) {
-        http.put('tags/' + tag.id, {is_done: !tag.is_done}, res => {
-          this.tags[tag.id] = res.data
-          this.$forceUpdate()
-        })
-      },
+        },
       removeTag (tag) {
         http.delete('tags/' + tag.id, {}, () => {
           delete this.tags[tag.id]
