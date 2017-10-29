@@ -5,7 +5,7 @@ import userStore from './stores/userStore'
 import router from './router'
 import event from './utils/event'
 
-require('bootstrap-sass')
+require('./bootstrap');
 
 const app = new Vue({
   router,
