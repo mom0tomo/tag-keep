@@ -1,22 +1,18 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
+import http from './services/http'
+import userStore from './stores/userStore'
+import router from './router'
+import event from './utils/event'
 
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-Vue.use(VueAxios, axios);
+require('bootstrap-sass')
 
-import App from './App.vue';
-import Login from './components/Login.vue';
-
-const routes = [
-  {
-      name: 'Login',
-      path: '/',
-      component: Login
-  }
-];
-
-const router = new VueRouter({ mode: 'history', routes: routes});
-new Vue(Vue.util.extend({ router }, App)).$mount('#app');
+const app = new Vue({
+  router,
+  created () {
+    http.init()
+    userStore.init()
+    event.init(new Vue)
+  },
+  render: h => h(require('./App.vue')),
+}).$mount('#app')
