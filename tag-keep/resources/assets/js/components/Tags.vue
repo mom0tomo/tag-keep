@@ -1,8 +1,6 @@
 <template>
   <div class="wrapper">
     <section class="container-top">
-      <p class="text-center">Tag Keep</p>
-      <!-- <p class="text-right">please <router-link to="/login">Login.</router-link></p> -->
       <div class="form-group">
         <div class="alert alert-danger" role="alert" v-if="showAlert">
           {{ alertMessage }}
@@ -38,7 +36,7 @@
         <div class="col-md-4">
           <div　class="panel panel-default">
             <div class="panel-heading">
-              {{ tag.title }}}
+              {{ tag.title }}
             </div>
             <div class="panel-body">
               <div>
@@ -64,6 +62,7 @@
     data() {
       return {
         tags: [],
+        title: '',
         content: '',
         showAlert: false,
         alertMessage: '',
@@ -85,6 +84,12 @@
         http.post('tags', {content: this.content}, res => {
           this.tags[res.data.id] = res.data
           this.content = ''
+          this.showAlert = false
+          this.alertMessage = ''
+        })
+        http.post('tags', {title: this.title}, res => {
+          this.tags[res.data.id] = res.data
+          this.title = ''
           this.showAlert = false
           this.alertMessage = ''
         })

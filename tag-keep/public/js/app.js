@@ -15497,6 +15497,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -15571,7 +15573,7 @@ var render = function() {
           _c(
             "router-link",
             { staticClass: "navbar-brand", attrs: { to: "/" } },
-            [_vm._v("Vue TODO")]
+            [_vm._v("Tag Keep")]
           )
         ],
         1
@@ -15585,15 +15587,7 @@ var render = function() {
         },
         [
           _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: "/about" } }, [
-                  _vm._v("About")
-                ])
-              ],
-              1
-            ),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "li",
@@ -15636,6 +15630,12 @@ var staticRenderFns = [
         _c("span", { staticClass: "icon-bar" })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", [_c("i", { staticClass: "fa fa-search" })])])
   }
 ]
 render._withStripped = true
@@ -15655,9 +15655,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [
-    _c("div", { staticClass: "container" }, [_c("router-view")], 1)
-  ])
+  return _c(
+    "div",
+    { attrs: { id: "app" } },
+    [
+      _c("navbar"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [_c("router-view")], 1)
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28371,8 +28378,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
     _c("section", { staticClass: "container-top" }, [
-      _c("p", { staticClass: "text-center" }, [_vm._v("Tag Keep")]),
-      _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _vm.showAlert
           ? _c(
@@ -28497,7 +28502,7 @@ var render = function() {
           _c("div", { staticClass: "col-md-4" }, [
             _c("div", { staticClass: "panel panel-default" }, [
               _c("div", { staticClass: "panel-heading" }, [
-                _vm._v("\n            " + _vm._s(tag.title) + "}\n          ")
+                _vm._v("\n            " + _vm._s(tag.title) + "\n          ")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "panel-body" }, [
@@ -29028,8 +29033,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -29040,6 +29043,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tags: [],
+      title: '',
       content: '',
       showAlert: false,
       alertMessage: ''
@@ -29066,6 +29070,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags', { content: this.content }, function (res) {
         _this2.tags[res.data.id] = res.data;
         _this2.content = '';
+        _this2.showAlert = false;
+        _this2.alertMessage = '';
+      });
+      __WEBPACK_IMPORTED_MODULE_0__services_http__["a" /* default */].post('tags', { title: this.title }, function (res) {
+        _this2.tags[res.data.id] = res.data;
+        _this2.title = '';
         _this2.showAlert = false;
         _this2.alertMessage = '';
       });

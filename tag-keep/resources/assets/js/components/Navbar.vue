@@ -11,19 +11,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <router-link to="/" class="navbar-brand">Vue TODO</router-link>
+        <router-link to="/" class="navbar-brand">Tag Keep</router-link>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><router-link to="/about">About</router-link></li>
-
+          <li>
+            <a><i class="fa fa-search"></i></a>
+          </li>
           <li>
             <router-link to="/login">Log in</router-link>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
 </template>

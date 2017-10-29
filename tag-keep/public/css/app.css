@@ -11272,3 +11272,14 @@ a:hover {
   text-align: right;
 }
 
+.tk-nav-search {
+  padding: 5px;
+}
+
+.tk-nav-search input {
+  margin-left: 10px;
+  border: none;
+  outline: 0;
+  border-radius: 0;
+}
+
