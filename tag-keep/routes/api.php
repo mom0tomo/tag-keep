@@ -15,4 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'api'], function () {
     Route::resource('tags',  'TagController');
+    // Route::post('authenticate',  'AuthenticateController@authenticate');
+    // Route::get('users',  'AuthenticateController@getUsers');
+    // Route::get('logout',  'AuthenticateController@logout')->middleware('jwt.refresh');
 });
