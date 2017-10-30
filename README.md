@@ -49,10 +49,19 @@ $ npm run watch
 
 #### Open another terminal window.
 ```
+$ docker exec -it laradock_mysql_1 /bin/bash
+
+$ mysql -u root -p
+
+mysql > CREATE DATABASE app;
+```
+
+#### Open another terminal window.
+```
 $ docker exec -it laradock_workspace_1 /bin/bash
 
 $ composer install
-$ php argisan key:generate
+$ php artisan key:generate
 $ php artisan migrate
 $ php artisan db:seed
 ```
